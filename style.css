@@ -13,6 +13,6 @@ body {
     grid-template-rows: repeat(16, 1fr); */
 }
 
-.grid-item {
+/* .grid-item {
     border: 0.1rem solid blue;
-}
+} */
