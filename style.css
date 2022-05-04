@@ -1,14 +1,32 @@
 body {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-family: 'Open Sans', serif;
+}
+
+.header {
+    text-align: center;
     font-size: 32px;
+    font-weight: 400;
+}
+
+.top-selector {
+    display: flex;
+    justify-content: center;
+    border: 2px solid grey;
+    /* border-radius: 20%; */
+    padding: 16px 12px;
+    column-gap: 12px;
 }
 
 .container {
     display: grid;
     border: 1rem solid red;
-    height: 25em;
-    width: 25em;
+    height: 48em;
+    width: 48em;
     /* grid-template-columns: repeat(16, 1fr);
     grid-template-rows: repeat(16, 1fr); */
 }
