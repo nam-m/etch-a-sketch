@@ -3,7 +3,7 @@
 */
 function createGrid() {
     const containerDiv = document.getElementById('container');
-    const squaresPerSide = 7;
+    const squaresPerSide = 100;
     for (let i = 1; i <= squaresPerSide ** 2; i++) {
         createSquare();
     }
@@ -21,7 +21,7 @@ function createSquare() {
     const square = document.createElement('div');
     const squareAttributes = {
         class: 'grid-item',
-        style: 'border: 0.1rem solid blue;'
+        style: 'border: 0.05em solid whitesmoke;'
     };
     setMultipleAttributes(square, squareAttributes);
     containerDiv.appendChild(square);
@@ -42,9 +42,26 @@ function setMultipleAttributes(element, attributes) {
     });
 }
 
+function clearGrid() {
+    const container = document.getElementById('container');
+    while (container.firstChild && container.removeChild(firstChild));
+}
+
+function keyPressed(keyCode) {
+    window.addEventListener('keydown', (e) => {
+        if (e.code === keyCode) {
+            const squares = document.querySelectorAll('.grid-item');
+            squares.forEach(square => {
+                square.classList.remove('.grid-item');
+            });
+        }
+    });
+}
 /*  ----------------------------------------------------------------------
     Main program
     ----------------------------------------------------------------------
 */
+
+keyPressed('Space');
 createGrid();
 hoverSquares();
