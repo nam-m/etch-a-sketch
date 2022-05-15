@@ -41,20 +41,53 @@ function setMultipleAttributes(element, attributes) {
         element.setAttribute(attr, attributes[attr]);
     });
 }
-
+/*  -------------------------------------------------------------------------
+    Clear sketch on the grid
+*/
 function clearGrid() {
-    const container = document.getElementById('container');
-    while (container.firstChild && container.removeChild(firstChild));
+    const squares = document.querySelectorAll('.grid-item');
+    const newSketchButton = document.querySelector('.new-sketch');
+    
+    newSketchButton.addEventListener('click', () => {
+        console.log('New sketch cliked!');
+        squares.forEach(square => 
+            square.style.backgroundColor = 'white'
+        );
+    });
 }
 
 function keyPressed(keyCode) {
-    window.addEventListener('keydown', (e) => {
-        if (e.code === keyCode) {
+    // window.addEventListener('keydown', (e) => {
+    //     if (e.code === keyCode && spacePressed == false) {
+    //         const squares = document.querySelectorAll('.grid-item');
+    //         squares.forEach(square => {
+    //             square.classList.remove('grid-item');
+    //         });
+    //         spacePressed = true;
+    //     } else if (e.code === keyCode && spacePressed == true) {
+    //         const squares = document.querySelectorAll('.grid-item');
+    //         squares.forEach(square => {
+    //             square.classList.add('grid-item');
+    //         });
+    //     }
+    // });
+    return new Promise((resolve) => {
+        window.addEventListener('keydown', (e) => {
             const squares = document.querySelectorAll('.grid-item');
-            squares.forEach(square => {
-                square.classList.remove('.grid-item');
-            });
-        }
+            if (e.code == keyCode) {
+                if (spacePressed == false) {
+                    spacePressed = true;
+                    squares.forEach(square => {
+                        square.classList.remove('grid-item');
+                    });
+                } else {
+                    spacePressed = false;
+                    squares.forEach(square => {
+                        square.classList.add('grid-item');
+                    });
+                }
+            }
+        })
     });
 }
 /*  ----------------------------------------------------------------------
@@ -62,6 +95,10 @@ function keyPressed(keyCode) {
     ----------------------------------------------------------------------
 */
 
-keyPressed('Space');
+let spacePressed = false;
+
 createGrid();
+keyPressed('Space');
 hoverSquares();
+clearGrid();
+
